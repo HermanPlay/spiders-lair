@@ -1,0 +1,14 @@
+[project]
+name = "spiders-lair"
+version = "0.1.0"
+description = "Scrapers for the bo7.online Spider's Lair puzzles"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx[http2]>=0.27",
+    "curl_cffi>=0.7",
+    "playwright>=1.45",
+]
+
+[tool.uv]
+package = false

@@ -1,6 +1,6 @@
 """Reproduces the Curious Reflections experiments: TLS stack x User-Agent x headers.
 
-    python -m experiments.mirror_matrix
+    uv run python -m experiments.mirror_matrix
 Writes results/experiments/mirror_matrix.json.
 """
 import asyncio

@@ -1,9 +1,9 @@
 """Run the bo7.online puzzle scrapers and store evidence under results/.
 
-    python run_all.py                          # every puzzle, default load
-    python run_all.py -p the_silver_veil -n 200 --rps 20
-    python run_all.py --tag stress -n 1000 --rps 100 -p the_silver_veil   # scale test
-    python run_all.py --mx-proxy http://user:pass@pr.oxylabs.io:7777   # enables The Exiled Door
+    uv run run_all.py                          # every puzzle, default load
+    uv run run_all.py -p the_silver_veil -n 200 --rps 20
+    uv run run_all.py --tag stress -n 1000 --rps 100 -p the_silver_veil   # scale test
+    uv run run_all.py --mx-proxy http://user:pass@pr.oxylabs.io:7777   # enables The Exiled Door
 """
 from __future__ import annotations
 

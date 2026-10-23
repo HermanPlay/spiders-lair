@@ -17,13 +17,13 @@ door opened / mirror aligned, and the experiments used to work out each blocking
 ## Running it
 
 ```bash
-uv venv -p 3.12 .venv && uv pip install -p .venv -r requirements.txt
-.venv/bin/python -m playwright install chromium
+uv sync                                   # installs deps from pyproject.toml / uv.lock into .venv
+uv run playwright install chromium
 
-.venv/bin/python run_all.py                                   # all puzzles, default load
-.venv/bin/python run_all.py -p the_silver_veil -n 1000 --rps 100 --tag stress
-MX_PROXY=http://user:pass@host:port .venv/bin/python run_all.py -p the_exiled_door
-CLOCKWORK_PROXIES=http://p1,http://p2 .venv/bin/python run_all.py -p the_clockwork_door --rps 1
+uv run run_all.py                         # all puzzles, default load
+uv run run_all.py -p the_silver_veil -n 1000 --rps 100 --tag stress
+MX_PROXY=http://user:pass@host:port uv run run_all.py -p the_exiled_door
+CLOCKWORK_PROXIES=http://p1,http://p2 uv run run_all.py -p the_clockwork_door --rps 1
 ```
 
 `--rps` is enforced by a shared scheduler (`spiders/core.py::RateLimiter`) that spaces request

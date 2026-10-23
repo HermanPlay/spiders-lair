@@ -2,7 +2,7 @@
 
 All three answer 403 "The Mirror Cracks" to an ordinary Python client sending a Chrome
 User-Agent, because the server fingerprints the connection itself (`/tls_info` exposes the JA3
-it computes). Experiments (`python -m experiments.mirror_matrix`, results/experiments/) showed:
+it computes). Experiments (`uv run python -m experiments.mirror_matrix`, results/experiments/) showed:
 
 The Fractured Mirror - "its reflection breaks when the voice is unnatural"
     The "voice" is the TLS ClientHello *and* the header set, both judged against the UA:

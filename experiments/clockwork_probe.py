@@ -1,6 +1,6 @@
 """Measures The Clockwork Door's per-IP budget: knocks at a fixed gap and logs each status.
 
-    python -m experiments.clockwork_probe 12 8     # gap seconds, number of knocks
+    uv run python -m experiments.clockwork_probe 12 8     # gap seconds, number of knocks
 Wait >60 s of silence before running, otherwise leftover knocks from earlier skew the result.
 Results observed (see README): burst -> 5 x 200 then 429; 8 s and 11 s gaps -> 5 x 200 then 429;
 12 s gaps -> unlimited 200s. => 5 requests / 60 s sliding window, 429s counted.
