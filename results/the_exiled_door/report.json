@@ -1,23 +1,21 @@
 {
   "puzzle": "The Exiled Door",
   "category": "Mysterious Passages",
-  "requests": 1,
-  "target_rps": 1,
-  "achieved_rps": 0.0,
-  "opened": 0,
+  "requests": 30,
+  "target_rps": 5,
+  "achieved_rps": 4.79,
+  "opened": 30,
   "statuses": {
-    "403": 1
+    "200": 30
   },
   "headlines": {
-    "The Exiled Door Rejects": 1
+    "The Exiled Door Resonates": 30
   },
-  "notes": [
-    "request-country-is-mx: False"
-  ],
-  "elapsed_s": 0.13,
-  "solved": false,
-  "timestamp": "2026-10-23T18:19:51+0200",
+  "notes": [],
+  "elapsed_s": 6.41,
+  "solved": true,
+  "timestamp": "2026-10-23T19:13:50+0200",
   "direct_status": 403,
   "direct_geo_header": "False",
-  "skipped": "no MX proxy configured: pass --mx-proxy or set MX_PROXY"
+  "proxy_geo_header": "True"
 }

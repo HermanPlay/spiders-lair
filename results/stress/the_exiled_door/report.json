@@ -1,0 +1,21 @@
+{
+  "puzzle": "The Exiled Door",
+  "category": "Mysterious Passages",
+  "requests": 200,
+  "target_rps": 20.0,
+  "achieved_rps": 17.61,
+  "opened": 200,
+  "statuses": {
+    "200": 200
+  },
+  "headlines": {
+    "The Exiled Door Resonates": 200
+  },
+  "notes": [],
+  "elapsed_s": 12.11,
+  "solved": true,
+  "timestamp": "2026-10-23T19:14:09+0200",
+  "direct_status": 403,
+  "direct_geo_header": "False",
+  "proxy_geo_header": "True"
+}

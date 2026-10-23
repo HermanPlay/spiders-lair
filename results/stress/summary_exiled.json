@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-23T19:14:09+0200",
+  "results": [
+    {
+      "puzzle": "the_exiled_door",
+      "solved": true,
+      "opened": 200,
+      "requests": 200,
+      "achieved_rps": 17.61
+    }
+  ]
+}

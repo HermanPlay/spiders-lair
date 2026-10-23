@@ -7,7 +7,7 @@ door opened / mirror aligned, and the experiments used to work out each blocking
 |---|---|---|---|---|
 | Mysterious Passages | The Door of Echoed Steps | Session cookie set by the lobby page | httpx | ✅ 1000/1000 @ 100 req/s |
 | Mysterious Passages | The Clockwork Door | Per-IP rate limit: 5 req / 60 s sliding window, 429s count | httpx + per-IP pacer | ✅ 8/8 (+6/6 when asked for 50 req/s) |
-| Mysterious Passages | The Exiled Door | IP geolocation: Mexico only | httpx + MX proxy | ⏸ code ready, needs a Mexican proxy |
+| Mysterious Passages | The Exiled Door | IP geolocation: Mexico only | httpx + MX proxy | ✅ 30/30 @ 5 req/s, 200/200 @ ~17.6 req/s |
 | Curious Reflections | The Fractured Mirror | TLS fingerprint + browser-specific headers must match the UA | curl_cffi (Chrome) | ✅ 1000/1000 @ 100 req/s |
 | Curious Reflections | The Silver Veil | TLS fingerprint must strictly match the UA's browser | curl_cffi (Chrome) | ✅ 1000/1000 @ 100 req/s |
 | Curious Reflections | The Mirrored Gaze | Firefox User-Agent only | curl_cffi (Firefox) | ✅ 1000/1000 @ 100 req/s |
@@ -22,7 +22,7 @@ uv run python -m camoufox fetch          # downloads the Camoufox browser
 
 uv run run_all.py                         # all puzzles, default load
 uv run run_all.py -p the_silver_veil -n 1000 --rps 100 --tag stress
-MX_PROXY=http://user:pass@host:port uv run run_all.py -p the_exiled_door
+MX_PROXY=https://149.88.22.33:9443 uv run run_all.py -p the_exiled_door
 CLOCKWORK_PROXIES=http://p1,http://p2 uv run run_all.py -p the_clockwork_door --rps 1
 ```
 
@@ -82,10 +82,16 @@ carries the header `request-country-is-mx: False`, so the door geolocates the cl
 only opens for Mexico. Spoofed `X-Forwarded-For`, `X-Real-IP`, `CF-IPCountry` and
 `Accept-Language` headers made no difference. The solver sends traffic through a proxy given in
 `--mx-proxy`/`MX_PROXY` (for example Oxylabs with country `MX`), reads the header to confirm the
-exit is Mexican, then runs the load test. **This door is not solved in `results/`.** The only
-Mexican exit I tried was a free public proxy (187.243.251.66:999), and it was already offline:
-TCP connects and pings timed out. The saved report shows the direct attempt (403,
-`request-country-is-mx: False`).
+exit is Mexican, then runs the load test.
+
+The solved run used a free public HTTPS proxy in Querétaro (`https://149.88.22.33:9443`).
+Through it the header flips to `True` and the door answers "The Exiled Door Resonates"
+(`doors_open.jpg`, "¡bienvenido a mi telaraña!"). The run opened 30/30 at 5 req/s, and the
+stress run 200/200 at about 17.6 req/s; the proxy's ~0.5 s latency is the ceiling there. Its
+TLS certificate does not match its IP, so `spiders/http.py` skips verification for the hop to
+the proxy only. The tunnelled TLS session to bo7.online is still fully verified. The report
+keeps the direct attempt (`direct_status: 403`, `direct_geo_header: False`) for contrast; the
+blocked page is in `results/recon/the_exiled_door.html`.
 
 ### Curious Reflections
 

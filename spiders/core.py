@@ -14,7 +14,7 @@ BASE_URL = "https://bo7.online"
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results"
 
 # Markers the site uses on a solved page ("the door opened or the mirror aligned").
-OPEN_MARKERS = ("The door slides open", "The Mirror Aligns")
+OPEN_MARKERS = ("The door slides open", "The Mirror Aligns", "The Exiled Door Resonates")
 
 
 def is_open(html: str) -> bool:

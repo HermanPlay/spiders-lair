@@ -7,6 +7,8 @@ Two flavours are used on purpose:
 """
 from __future__ import annotations
 
+import ssl
+
 import httpx
 from curl_cffi.requests import AsyncSession
 
@@ -22,8 +24,22 @@ BROWSER_HEADERS = {
 
 def httpx_client(proxy: str | None = None, **kw) -> httpx.AsyncClient:
     limits = httpx.Limits(max_connections=32, max_keepalive_connections=32)
-    return httpx.AsyncClient(http2=True, headers=BROWSER_HEADERS, proxy=proxy, limits=limits,
+    return httpx.AsyncClient(http2=True, headers=BROWSER_HEADERS, proxy=_proxy(proxy), limits=limits,
                              timeout=30, follow_redirects=True, **kw)
+
+
+def _proxy(url: str | None) -> httpx.Proxy | None:
+    """HTTPS proxies (TLS to the proxy itself) often present a certificate that doesn't match
+    their IP. Only that client->proxy hop is left unverified; the CONNECT tunnel to the target is
+    still a normal, fully verified TLS session, so the proxy can't read or alter the traffic."""
+    if not url:
+        return None
+    if url.startswith("https://"):
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        return httpx.Proxy(url, ssl_context=ctx)
+    return httpx.Proxy(url)
 
 
 def impersonating_session(browser: str, proxy: str | None = None) -> AsyncSession:

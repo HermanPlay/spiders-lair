@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-23T19:04:14+0200",
+  "run_at": "2026-10-23T19:13:50+0200",
   "note": "rebuilt from per-puzzle reports",
   "results": [
     {
@@ -18,10 +18,10 @@
     },
     {
       "puzzle": "the_exiled_door",
-      "solved": false,
-      "opened": 0,
-      "requests": 1,
-      "achieved_rps": 0.0
+      "solved": true,
+      "opened": 30,
+      "requests": 30,
+      "achieved_rps": 4.79
     },
     {
       "puzzle": "the_fractured_mirror",
