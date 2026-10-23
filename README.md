@@ -11,14 +11,14 @@ door opened / mirror aligned, and the experiments used to work out each blocking
 | Curious Reflections | The Fractured Mirror | TLS fingerprint + browser-specific headers must match the UA | curl_cffi (Chrome) | ✅ 1000/1000 @ 100 req/s |
 | Curious Reflections | The Silver Veil | TLS fingerprint must strictly match the UA's browser | curl_cffi (Chrome) | ✅ 1000/1000 @ 100 req/s |
 | Curious Reflections | The Mirrored Gaze | Firefox User-Agent only | curl_cffi (Firefox) | ✅ 1000/1000 @ 100 req/s |
-| Shattered Thresholds | The Sleeping Vault | Content is loaded by JavaScript | Playwright | ✅ 60/60 @ 10 pages/s |
-| Shattered Thresholds | The Verity Gate | JS checks `navigator.webdriver`, headless UA and engine-vs-UA consistency | Playwright, hardened | ✅ 60/60 @ 10 pages/s |
+| Shattered Thresholds | The Sleeping Vault | Content is loaded by JavaScript | Camoufox | ✅ 60/60 @ ~8.8 pages/s |
+| Shattered Thresholds | The Verity Gate | JS checks `navigator.webdriver`, headless UA and engine-vs-UA consistency | Camoufox | ✅ 60/60 @ ~8.4 pages/s |
 
 ## Running it
 
 ```bash
 uv sync                                   # installs deps from pyproject.toml / uv.lock into .venv
-uv run playwright install chromium
+uv run python -m camoufox fetch          # downloads the Camoufox browser
 
 uv run run_all.py                         # all puzzles, default load
 uv run run_all.py -p the_silver_veil -n 1000 --rps 100 --tag stress
@@ -82,9 +82,10 @@ carries the header `request-country-is-mx: False`, so the door geolocates the cl
 only opens for Mexico. Spoofed `X-Forwarded-For`, `X-Real-IP`, `CF-IPCountry` and
 `Accept-Language` headers made no difference. The solver sends traffic through a proxy given in
 `--mx-proxy`/`MX_PROXY` (for example Oxylabs with country `MX`), reads the header to confirm the
-exit is Mexican, then runs the load test. **I had no Mexican exit IP, so this door is not
-solved in `results/`.** The saved report shows the direct attempt (403, `request-country-is-mx:
-False`).
+exit is Mexican, then runs the load test. **This door is not solved in `results/`.** The only
+Mexican exit I tried was a free public proxy (187.243.251.66:999), and it was already offline:
+TCP connects and pings timed out. The saved report shows the direct attempt (403,
+`request-country-is-mx: False`).
 
 ### Curious Reflections
 
@@ -124,7 +125,7 @@ curl_cffi Safari profile is not accepted by these mirrors, so I did not use it.
 
 **The Sleeping Vault** ("shows nothing… until you truly look"). The server always returns the
 sealed door. An inline script then fetches `/resources/open.html` and swaps it in, so an HTTP
-client never sees the door open. Playwright renders the page and waits for the "slides open"
+client never sees the door open. Camoufox renders the page and waits for the "slides open"
 headline. `opened.html` holds the rendered DOM.
 
 **The Verity Gate** ("breaks only for what is authentic"). The server parses the UA into
@@ -136,12 +137,14 @@ these hold:
 * the claimed engine does not match the real one, judged by `userAgentData` brands,
   `window.chrome` and `-moz-` CSS support.
 
-Stock headless Playwright fails the first two checks (`stock_playwright_opened: false` in the
-report). The scraper launches Chromium with
-`--disable-blink-features=AutomationControlled`, which makes `navigator.webdriver` false. It sets
-a UA naming the same Chrome version the browser really runs, minus `Headless`, so the server's
-claim, the JS engine checks and the UA all agree. Four browser contexts are shared by the
-workers so page loads run in parallel at the requested rate.
+During exploration, stock headless Playwright Chromium failed the first two checks
+(`webdriver: true`, server claim `headlesschrome`). The scrapers use
+[Camoufox](https://camoufox.com), a Firefox build patched in C++ rather than with JS shims, so
+`navigator.webdriver` is false. Its generated fingerprint keeps the UA and the Gecko engine
+features in agreement. The server claims `{"family": "firefox"}`, the gate's JS detects `gecko`,
+and the door opens. Each report records the UA and `webdriver` value the page saw. Eight
+browser contexts are shared by the workers so page loads run in parallel. On this laptop the
+stress run reached about 8.5 of the 10 requested pages/s, limited by local rendering.
 
 ## Notes
 

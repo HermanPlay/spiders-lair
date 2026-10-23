@@ -13,29 +13,26 @@ The Verity Gate - "its seal breaks only for what is authentic"
       * the UA family must not be `headlesschrome`      (default headless UA)
       * the claimed family/engine must match what the JS engine really is
         (userAgentData brands, window.chrome, CSS -moz-* support, ...).
-    Stock Playwright fails the first two. We launch Chromium with
-    `--disable-blink-features=AutomationControlled` (webdriver -> false) and a User-Agent that is
-    the *same Chrome version* the browser really is, minus the "Headless" token, so UA, the
-    server's claim and the JS-detected engine are all consistent.
+    Stock headless Playwright Chromium fails the first two.
+
+Approach: Camoufox, a Firefox build patched at the C++ level for stealth. It reports
+`navigator.webdriver = false` without JS shims, and its generated fingerprint keeps the UA,
+the Gecko engine features the gate probes (`-moz-appearance`, no `window.chrome`) and the
+rest of navigator consistent - so the server's claim ("firefox") and the JS-detected engine
+("gecko") agree. Camoufox drives the browser through the Playwright API, so pages/contexts
+work as usual.
 """
 from __future__ import annotations
 
 import asyncio
 
-from playwright.async_api import async_playwright
+from camoufox.async_api import AsyncCamoufox
 
 from ..core import BASE_URL, Outcome, is_open, load_run
 from ..http import httpx_client
 
 CATEGORY = "Shattered Thresholds"
 DOORS = {"the_sleeping_vault": "The Sleeping Vault", "the_verity_gate": "The Verity Gate"}
-STEALTH_ARGS = ["--disable-blink-features=AutomationControlled"]
-
-
-def honest_ua(browser_version: str) -> str:
-    major = browser_version.split(".")[0]
-    return (f"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
-            f"(KHTML, like Gecko) Chrome/{major}.0.0.0 Safari/537.36")
 
 
 async def render(context, url: str, timeout_ms: int = 10_000) -> Outcome:
@@ -61,17 +58,15 @@ def make_solver(slug: str):
         async with httpx_client() as naive:  # what a plain HTTP client sees
             naive_open = is_open((await naive.get(url)).text)
 
-        async with async_playwright() as p:
-            # Control run: stock headless Playwright, to prove the gate is real.
-            stock = await p.chromium.launch(headless=not headed)
-            stock_open = is_open((await render(await stock.new_context(), url, 4_000)).html)
-            version = stock.version
-            await stock.close()
-
-            browser = await p.chromium.launch(headless=not headed, args=STEALTH_ARGS)
-            ua = honest_ua(version)
+        async with AsyncCamoufox(headless=not headed, os="macos", locale="en-US") as browser:
             # A small pool of contexts (separate cookie jars/tabs) shared by the workers.
-            contexts = [await browser.new_context(user_agent=ua, locale="en-US") for _ in range(4)]
+            contexts = [await browser.new_context() for _ in range(8)]
+            probe = await contexts[0].new_page()
+            await probe.goto(url)
+            fingerprint = await probe.evaluate("""() => ({
+                userAgent: navigator.userAgent, webdriver: navigator.webdriver,
+                claim: document.getElementById('what-is-my-browser')?.textContent ?? null})""")
+            await probe.close()
             counter = iter(range(10**9))
 
             async def attempt() -> Outcome:
@@ -79,10 +74,8 @@ def make_solver(slug: str):
 
             report, outcomes = await load_run(name, CATEGORY, attempt, requests=requests, rps=rps,
                                               concurrency=len(contexts) * 2)
-            await browser.close()
 
-        extra = {"browser_version": version, "user_agent": ua,
-                 "plain_http_client_opened": naive_open, "stock_playwright_opened": stock_open}
+        extra = {"browser": "camoufox", **fingerprint, "plain_http_client_opened": naive_open}
         return report, outcomes, extra
 
     return name, solve

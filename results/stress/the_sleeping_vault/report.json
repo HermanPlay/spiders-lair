@@ -3,7 +3,7 @@
   "category": "Shattered Thresholds",
   "requests": 60,
   "target_rps": 10.0,
-  "achieved_rps": 10.0,
+  "achieved_rps": 8.78,
   "opened": 60,
   "statuses": {
     "200": 60
@@ -12,11 +12,12 @@
     "The door slides open. 🚪": 60
   },
   "notes": [],
-  "elapsed_s": 6.06,
+  "elapsed_s": 8.57,
   "solved": true,
-  "timestamp": "2026-10-23T18:21:27+0200",
-  "browser_version": "156.0.8078.4",
-  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
-  "plain_http_client_opened": false,
-  "stock_playwright_opened": true
+  "timestamp": "2026-10-23T19:04:03+0200",
+  "browser": "camoufox",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:156.0) Gecko/20100101 Firefox/156.0",
+  "webdriver": false,
+  "claim": null,
+  "plain_http_client_opened": false
 }

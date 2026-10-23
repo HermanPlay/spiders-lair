@@ -12,11 +12,12 @@
     "The door slides open. 🚪": 20
   },
   "notes": [],
-  "elapsed_s": 4.87,
+  "elapsed_s": 5.0,
   "solved": true,
-  "timestamp": "2026-10-23T18:20:23+0200",
-  "browser_version": "156.0.8078.4",
-  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
-  "plain_http_client_opened": false,
-  "stock_playwright_opened": false
+  "timestamp": "2026-10-23T19:03:02+0200",
+  "browser": "camoufox",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:156.0) Gecko/20100101 Firefox/156.0",
+  "webdriver": false,
+  "claim": "{\"family\": \"firefox\", \"major\": 156}",
+  "plain_http_client_opened": false
 }
