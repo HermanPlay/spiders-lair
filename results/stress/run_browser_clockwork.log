@@ -1,0 +1,3 @@
+[SOLVED ] Shattered Thresholds / The Sleeping Vault: 60/60 opened @ 10.00 req/s (target 10.0) statuses={'200': 60} -> results/stress/the_sleeping_vault
+[SOLVED ] Shattered Thresholds / The Verity Gate: 60/60 opened @ 10.00 req/s (target 10.0) statuses={'200': 60} -> results/stress/the_verity_gate
+[SOLVED ] Mysterious Passages / The Clockwork Door: 6/6 opened @ 0.08 req/s (target 0.08) statuses={'200': 6} -> results/stress/the_clockwork_door   (requested --rps 50; pacer capped it to the per-IP pulse)

@@ -1,0 +1,26 @@
+{
+  "puzzle": "The Clockwork Door",
+  "category": "Mysterious Passages",
+  "requests": 6,
+  "target_rps": 0.08,
+  "achieved_rps": 0.08,
+  "opened": 6,
+  "statuses": {
+    "200": 6
+  },
+  "headlines": {
+    "The door slides open. 🚪": 6
+  },
+  "notes": [],
+  "elapsed_s": 62.62,
+  "solved": true,
+  "timestamp": "2026-10-23T18:22:41+0200",
+  "exits": [
+    "direct"
+  ],
+  "pulse_interval_s": 12.5,
+  "budget": "5 req / 60s per IP",
+  "requested_rps": 50.0,
+  "rate_ceiling_rps": 0.08,
+  "retries_after_429": 0
+}

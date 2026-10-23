@@ -1,0 +1,22 @@
+{
+  "puzzle": "The Door of Echoed Steps",
+  "category": "Mysterious Passages",
+  "requests": 100,
+  "target_rps": 20,
+  "achieved_rps": 20.0,
+  "opened": 100,
+  "statuses": {
+    "200": 100
+  },
+  "headlines": {
+    "The door slides open. 🚪": 100
+  },
+  "notes": [],
+  "elapsed_s": 5.07,
+  "solved": true,
+  "timestamp": "2026-10-23T18:18:23+0200",
+  "naive_status_without_cookie": 403,
+  "cookies_from_lobby": {
+    "wormhole_token": "galactic-cookie-42"
+  }
+}

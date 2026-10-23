@@ -1,0 +1,21 @@
+{
+  "puzzle": "The Mirrored Gaze",
+  "category": "Curious Reflections",
+  "requests": 1000,
+  "target_rps": 100.0,
+  "achieved_rps": 100.0,
+  "opened": 1000,
+  "statuses": {
+    "200": 1000
+  },
+  "headlines": {
+    "The Mirror Aligns": 1000
+  },
+  "notes": [],
+  "elapsed_s": 10.1,
+  "solved": true,
+  "timestamp": "2026-10-23T18:23:31+0200",
+  "impersonated_browser": "firefox",
+  "server_seen_ja3": "6f7889b9fb1a62a9577e685c1fcfa919",
+  "naive_status_python_tls": 403
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕷️</text></svg>">
+    <title>The Exiled Door</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            background-image: 
+                radial-gradient(#333 1px, transparent 1px),
+                radial-gradient(#333 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .web-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #2a2a2a;
+            border: 2px solid #4a4a4a;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.1);
+            text-align: center;
+        }
+
+        .web-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #4a4a4a;
+            border-radius: 2px;
+        }
+
+        .web-corner-tl {
+            top: -10px;
+            left: -10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .web-corner-tr {
+            top: -10px;
+            right: -10px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .web-corner-bl {
+            bottom: -10px;
+            left: -10px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .web-corner-br {
+            bottom: -10px;
+            right: -10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        h1 {
+            color: #8a8a8a;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        img {
+            width: 400px;
+            height: 500px;
+            object-fit: cover;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(128, 128, 128, 0.1);
+            border: 3px solid #4a4a4a;
+            filter: brightness(0.8) contrast(1.2);
+            transition: all 0.3s ease;
+        }
+
+        img:hover {
+            filter: brightness(0.9) contrast(1.1);
+            transform: scale(1.02);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 10px;
+            border-left: 3px solid #4a4a4a;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #252525;
+        }
+
+        p:hover {
+            background: #333;
+            transform: translateX(10px);
+            border-left-color: #666;
+        }
+
+        .spider-cursor {
+            cursor: crosshair;
+        }
+
+        .ancient-text {
+            font-family: 'Courier New', monospace;
+            color: #666;
+            font-style: italic;
+            font-size: 0.8em;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .ancient-text::before, .ancient-text::after {
+            content: "✧";
+            margin: 0 10px;
+            color: #4a4a4a;
+        }
+
+        .success-container {
+            animation: success-pulse 2s ease-in-out infinite;
+        }
+
+        .error-container {
+            animation: error-shake 0.5s ease-in-out;
+        }
+
+        @keyframes success-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes error-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body class="spider-cursor">
+    <div class="web-container error-container">
+        <div class="web-corner web-corner-tl"></div>
+        <div class="web-corner web-corner-tr"></div>
+        <div class="web-corner web-corner-bl"></div>
+        <div class="web-corner web-corner-br"></div>
+
+        
+            <h1>The Exiled Door Rejects</h1>
+            <img src="/resources/doors_closed.jpg" alt="Web Access Denied">
+            <p>*taps web warning signal* Please return to your designated web sector.</p>
+            <div class="ancient-text">The chamber's echoes speak of foreign lands...</div>
+        
+    </div>
+</body>
+</html>

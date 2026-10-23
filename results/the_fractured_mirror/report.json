@@ -1,0 +1,21 @@
+{
+  "puzzle": "The Fractured Mirror",
+  "category": "Curious Reflections",
+  "requests": 100,
+  "target_rps": 20,
+  "achieved_rps": 20.0,
+  "opened": 100,
+  "statuses": {
+    "200": 100
+  },
+  "headlines": {
+    "The Mirror Aligns": 100
+  },
+  "notes": [],
+  "elapsed_s": 5.08,
+  "solved": true,
+  "timestamp": "2026-10-23T18:19:57+0200",
+  "impersonated_browser": "chrome",
+  "server_seen_ja3": "4fac90e163d7e04e8c34be4beb9f4ab7",
+  "naive_status_python_tls": 403
+}

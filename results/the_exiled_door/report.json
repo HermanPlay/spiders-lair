@@ -1,0 +1,23 @@
+{
+  "puzzle": "The Exiled Door",
+  "category": "Mysterious Passages",
+  "requests": 1,
+  "target_rps": 1,
+  "achieved_rps": 0.0,
+  "opened": 0,
+  "statuses": {
+    "403": 1
+  },
+  "headlines": {
+    "The Exiled Door Rejects": 1
+  },
+  "notes": [
+    "request-country-is-mx: False"
+  ],
+  "elapsed_s": 0.13,
+  "solved": false,
+  "timestamp": "2026-10-23T18:19:51+0200",
+  "direct_status": 403,
+  "direct_geo_header": "False",
+  "skipped": "no MX proxy configured: pass --mx-proxy or set MX_PROXY"
+}

@@ -1,0 +1,9 @@
+{
+  "note": "Raw timestamps from the exploratory probes run on 2026-10-23 (local CEST), single IP.",
+  "burst_20_back_to_back": "200 x4 then 429 x16 (a 5th request had been made 64 s earlier)",
+  "poll_every_1s_after_block": "stayed 429 for >7 minutes - rejected knocks keep the window full",
+  "gap_12s": ["16:41:58 200", "16:42:10 200", "16:42:22 200", "16:42:34 200", "16:42:46 200", "16:42:59 200", "16:43:11 200"],
+  "gap_8s": ["18:11:42 200", "18:11:50 200", "18:11:59 200", "18:12:07 200", "18:12:15 200", "18:12:24 429", "18:12:32 429", "... 429"],
+  "gap_11s": ["18:14:47 200", "18:14:58 200", "18:15:09 200", "18:15:21 200", "18:15:32 200", "18:15:43 429", "18:15:54 429", "18:16:05 429"],
+  "conclusion": "6th knock blocked at +55.7 s, allowed at +60.6 s => budget of 5 requests per 60 s sliding window per source IP"
+}

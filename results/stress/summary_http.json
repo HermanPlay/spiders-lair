@@ -1,0 +1,33 @@
+{
+  "run_at": "2026-10-23T18:23:31+0200",
+  "results": [
+    {
+      "puzzle": "the_door_of_echoed_steps",
+      "solved": true,
+      "opened": 1000,
+      "requests": 1000,
+      "achieved_rps": 99.29
+    },
+    {
+      "puzzle": "the_fractured_mirror",
+      "solved": true,
+      "opened": 1000,
+      "requests": 1000,
+      "achieved_rps": 99.99
+    },
+    {
+      "puzzle": "the_silver_veil",
+      "solved": true,
+      "opened": 1000,
+      "requests": 1000,
+      "achieved_rps": 99.99
+    },
+    {
+      "puzzle": "the_mirrored_gaze",
+      "solved": true,
+      "opened": 1000,
+      "requests": 1000,
+      "achieved_rps": 100.0
+    }
+  ]
+}

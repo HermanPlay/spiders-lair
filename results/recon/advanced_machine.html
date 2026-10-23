@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕷️</text></svg>">
+    <title>The Ancient Door - Inspection</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            background-image: 
+                radial-gradient(#333 1px, transparent 1px),
+                radial-gradient(#333 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .web-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #2a2a2a;
+            border: 2px solid #4a4a4a;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.1);
+            text-align: center;
+        }
+
+        .web-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #4a4a4a;
+            border-radius: 2px;
+        }
+
+        .web-corner-tl {
+            top: -10px;
+            left: -10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .web-corner-tr {
+            top: -10px;
+            right: -10px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .web-corner-bl {
+            bottom: -10px;
+            left: -10px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .web-corner-br {
+            bottom: -10px;
+            right: -10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        h1 {
+            color: #8a8a8a;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 10px;
+            border-left: 3px solid #4a4a4a;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #252525;
+        }
+
+        p:hover {
+            background: #333;
+            transform: translateX(10px);
+            border-left-color: #666;
+        }
+
+        .spider-cursor {
+            cursor: crosshair;
+        }
+
+        .ancient-text {
+            font-family: 'Courier New', monospace;
+            color: #666;
+            font-style: italic;
+            font-size: 0.8em;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .ancient-text::before, .ancient-text::after {
+            content: "✧";
+            margin: 0 10px;
+            color: #4a4a4a;
+        }
+
+        .spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #333;
+            border-radius: 50%;
+            border-top: 5px solid #4a4a4a;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #result-container {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #4a4a4a;
+            border-radius: 5px;
+            display: none;
+            background: #252525;
+            color: #b3b3b3;
+            text-align: left;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        #result-content {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 10px;
+            background: #1d1d1d;
+            border-radius: 4px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-all;
+            max-width: 100%;
+        }
+
+        .success {
+            color: #6aaa6a;
+        }
+
+        .error {
+            color: #aa6a6a;
+        }
+
+        #message {
+            color: #aa6a6a;
+            font-style: italic;
+            margin: 20px 0;
+            padding: 10px;
+            border-left: 3px solid #4a4a4a;
+        }
+
+        #fingerprint-data {
+            font-family: 'Courier New', monospace;
+            padding: 10px;
+            margin: 10px 0;
+            background: #252525;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="spider-cursor">
+    <div class="web-container">
+        <div class="web-corner web-corner-tl"></div>
+        <div class="web-corner web-corner-tr"></div>
+        <div class="web-corner web-corner-bl"></div>
+        <div class="web-corner web-corner-br"></div>
+        
+        <h1>The Ancient Door Examines</h1>
+        <p>*spider tilts head curiously*</p>
+        <p>*carefully inspects your web patterns*</p>
+        <p id="message">Info received</p>
+        <div id="fingerprint-data"></div>
+        <div class="spinner" id="loading-spinner"></div>
+        <div id="result-container">
+            <h3>Ancient Web Patterns:</h3>
+            <pre id="result-content"></pre>
+        </div>
+        <div class="ancient-text">The door's ancient mechanisms whir and click as they analyze your presence...</div>
+        <script>
+            (async () => {
+    const spinner = document.getElementById('loading-spinner');
+    const resultContainer = document.getElementById('result-container');
+    const resultContent = document.getElementById('result-content');
+    
+	const hashMini =  x => {
+		if (!x) return x
+		const json = `${JSON.stringify(x)}`
+		const hash = json.split('').reduce((hash, char, i) => {
+			return Math.imul(31, hash) + json.charCodeAt(i) | 0
+		}, 0x811c9dc5)
+		return ('0000000' + (hash >>> 0).toString(16)).substr(-8)
+	}
+
+	const hashify = async (x) => {
+		const json = `${JSON.stringify(x)}`
+		const jsonBuffer = new TextEncoder().encode(json)
+		const hashBuffer = await crypto.subtle.digest('SHA-256', jsonBuffer)
+		const hashArray = Array.from(new Uint8Array(hashBuffer))
+		const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('')
+		return hashHex
+	}
+
+	// template views
+	const patch = (oldEl, newEl) => oldEl.parentNode.replaceChild(newEl, oldEl)
+	const html = (str, ...expressionSet) => {
+		const template = document.createElement('template')
+		template.innerHTML = str.map((s, i) => `${s}${expressionSet[i] || ''}`).join('')
+		return document.importNode(template.content, true)
+	}
+
+	const pass = () => `<span class="pass">&#10004;</span>`
+	const fail = () => `<span class="fail">&#10006;</span>`
+
+	// system
+	// https://stackoverflow.com/a/23736334
+	const getOS = () => {
+		const { userAgent } = navigator
+		if (!userAgent) {
+			return
+		}
+		const os = (
+			// order is important
+			/windows phone/ig.test(userAgent) ? 'Windows Phone' :
+				/win(dows|16|32|64|95|98|nt)|wow64/ig.test(userAgent) ? 'Windows' :
+					/android/ig.test(userAgent) ? 'Android' :
+						/cros/ig.test(userAgent) ? 'Chrome OS' :
+							/linux/ig.test(userAgent) ? 'Linux' :
+								/ipad/ig.test(userAgent) ? 'iPad' :
+									/iphone/ig.test(userAgent) ? 'iPhone' :
+										/ipod/ig.test(userAgent) ? 'iPod' :
+											/ios/ig.test(userAgent) ? 'iOS' :
+												/mac/ig.test(userAgent) ? 'Mac' :
+													'Other'
+		)
+		return os
+	}
+
+	const getOSLie = () => {
+		const { userAgent, platform, maxTouchPoints } = navigator
+		const userAgentOS = (
+			// order is important
+			/win(dows|16|32|64|95|98|nt)|wow64/ig.test(userAgent) ? 'Windows' :
+				/android|linux|cros/ig.test(userAgent) ? 'Linux' :
+					/i(os|p(ad|hone|od))/ig.test(userAgent) ? 'iOS' :
+						/mac/ig.test(userAgent) ? 'Mac' :
+							'Other'
+		)
+		const platformOS = (
+			// order is important
+			/win/ig.test(platform) ? 'Windows' :
+				/android|arm|linux/i.test(platform) ? 'Linux' :
+					/i(os|p(ad|hone|od))/ig.test(platform) ? 'iOS' :
+						/mac/i.test(platform) ? 'Mac' :
+							'Other'
+		)
+		const invalidWindows64bitCPU = (
+			(/w(in|ow)64/ig.test(userAgent) && /win16/ig.test(platform)) ||
+			(/win(16|32)/ig.test(userAgent) && !/win(16|32)/ig.test(platform))
+		)
+		return {
+			core: userAgentOS,
+			platformLie: userAgentOS != platformOS || invalidWindows64bitCPU,
+			touchLie: (
+				!!maxTouchPoints && (
+					/NT\s(6.0|5.(0|1|2)|4.0)/ig.test(userAgent) ||
+					(/mac/ig.test(userAgent) && !/like mac/ig.test(userAgent)) ||
+					/mac|win16/ig.test(platform)
+				)
+				// note: touch can be disabled on Android, iOS, and emulators
+			)
+		}
+	}
+
+	const getVoices = () => new Promise(async resolve => {
+		try {
+			if (!('speechSynthesis' in window)) {
+				return resolve()
+			}
+			let success = false
+			const getVoices = () => {
+				const data = speechSynthesis.getVoices()
+				if (!data.length) {
+					return
+				}
+				success = true
+				const voices = data.map(({ name, lang }) => ({ name, lang }))
+				return resolve(
+					voices.find(key => (/lekha/i).test(key.name)) ? 'Mac' :
+						voices.find(key => (/microsoft/i).test(key.name)) ? 'Windows' :
+							voices.find(key => (/chrome os/i).test(key.name)) ? 'Chrome OS' :
+								voices.find(key => (/android/i).test(key.name)) ? 'Android' : undefined
+				)
+			}
+
+			getVoices()
+			speechSynthesis.onvoiceschanged = getVoices
+			setTimeout(() => {
+				return !success ? resolve() : undefined
+			}, 100)
+		}
+		catch (error) {
+			return resolve()
+		}
+	})
+
+
+	// get Machine
+	const nonPlatformParenthesis = /\((khtml|unlike|vizio|like gec|internal dummy|org\.eclipse|openssl|ipv6|via translate|safari|cardamon).+|xt\d+\)/ig
+	const parenthesis = /\((.+)\)/
+	const android = /((android).+)/i
+	const androidNoise = /^(linux|[a-z]|wv|mobile|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|windows|(rv:|trident|webview|iemobile).+/i
+	const androidBuild = /build\/.+\s|\sbuild\/.+/i
+	const androidRelease = /android( |-)\d+/i
+	const windows = /((windows).+)/i
+	const windowsNoise = /^(windows|ms(-|)office|microsoft|compatible|[a-z]|x64|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|outlook|ms(-|)office|microsoft|trident|\.net|msie|httrack|media center|infopath|aol|opera|iemobile|webbrowser).+/i
+	const windows64bitCPU = /w(ow|in)64/i
+	const cros = /cros/i
+	const crosNoise = /^([a-z]|x11|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|trident).+/i
+	const crosBuild = /\d+\.\d+\.\d+/i
+	const linux = /linux|x11|ubuntu|debian/i
+	const linuxNoise = /^([a-z]|x11|unknown|compatible|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2})$|(rv:|java|oracle|\+http|http|unknown|mozilla|konqueror|valve).+/i
+	const apple = /(cpu iphone|cpu os|iphone os|mac os|macos|intel os|ppc mac).+/i
+	const appleNoise = /^([a-z]|macintosh|compatible|mimic|[a-z]{2}(-|_)[a-z]{2}|[a-z]{2}|rv|\d+\.\d+)$|(rv:|silk|valve).+/i
+	const appleRelease = /(ppc |intel |)(mac|mac |)os (x |x|)(\d{2}(_|\.)\d{1,2}|\d{2,})/i
+	const otherOS = /((symbianos|nokia|blackberry|morphos|mac).+)|\/linux|freebsd|symbos|series \d+|win\d+|unix|hp-ux|bsdi|bsd|x86_64/i
+
+	const isDevice = (list, device) => list.filter(x => device.test(x)).length
+
+	const getUserAgentPlatform = ({ userAgent, excludeBuild = true }) => {
+		if (!userAgent) {
+			return
+		}
+		const { platformLie, touchLie, core } = getOSLie({ userAgent })
+		const ua = {
+			core,
+			platformLie,
+			touchLie,
+			trimmed: userAgent.trim().replace(/\s{2,}/, ' ')
+		}
+
+		ua.compressed = ua.trimmed.replace(nonPlatformParenthesis, '').trim()
+
+		if (!parenthesis.test(ua.compressed)) {
+			return
+		}
+
+		ua.platform = ua.compressed.match(parenthesis)[0]
+		ua.identifiers = ua.platform.slice(1, -1).replace(/,/g, ';').split(';').map(x => x.trim())
+
+		if (isDevice(ua.identifiers, android)) {
+			ua.parsed = ua.identifiers
+				.map(x => androidRelease.test(x) ? androidRelease.exec(x)[0].replace('-', ' ') : x)
+				.filter(x => !(androidNoise.test(x)))
+				.join(' ')
+				.replace((excludeBuild ? androidBuild : ''), '')
+				.trim().replace(/\s{2,}/, ' ')
+			return ua
+
+		} else if (isDevice(ua.identifiers, windows)) {
+			ua.parsed = ua.identifiers
+				.filter(x => !(windowsNoise.test(x)))
+				.join(' ')
+				.replace(/\sNT (\d+\.\d+)/, (match, version) => {
+					return (
+						version == '10.0' ? ' 10' :
+							version == '6.3' ? ' 8.1' :
+								version == '6.2' ? ' 8' :
+									version == '6.1' ? ' 7' :
+										version == '6.0' ? ' Vista' :
+											version == '5.2' ? ' XP Pro' :
+												version == '5.1' ? ' XP' :
+													version == '5.0' ? ' 2000' :
+														version == '4.0' ? match :
+															' ' + version
+					)
+				})
+				.replace(windows64bitCPU, '(64-bit)')
+				.trim().replace(/\s{2,}/, ' ')
+			return ua
+		} else if (isDevice(ua.identifiers, cros)) {
+			ua.parsed = ua.identifiers
+				.filter(x => !(crosNoise.test(x)))
+				.join(' ')
+				.replace((excludeBuild ? crosBuild : ''), '')
+				.trim().replace(/\s{2,}/, ' ')
+			return ua
+		} else if (isDevice(ua.identifiers, linux)) {
+			ua.parsed = ua.identifiers
+				.filter(x => !(linuxNoise.test(x)))
+				.join(' ')
+				.trim().replace(/\s{2,}/, ' ')
+			return ua
+		} else if (isDevice(ua.identifiers, apple)) {
+			ua.parsed = ua.identifiers
+				.map(x => {
+					if (appleRelease.test(x)) {
+						const release = appleRelease.exec(x)[0]
+						const versionMap = {
+							'10_7': 'Lion',
+							'10_8': 'Mountain Lion',
+							'10_9': 'Mavericks',
+							'10_10': 'Yosemite',
+							'10_11': 'El Capitan',
+							'10_12': 'Sierra',
+							'10_13': 'High Sierra',
+							'10_14': 'Mojave',
+							'10_15': 'Catalina',
+							'11': 'Big Sur',
+							'12': 'Monterey'
+						}
+						const version = (
+							(/(\d{2}(_|\.)\d{1,2}|\d{2,})/.exec(release) || [])[0] ||
+							''
+						).replace(/\./g, '_')
+						const isOSX = /^10/.test(version)
+						const id = isOSX ? version : (/^\d{2,}/.exec(version) || [])[0]
+						const codeName = versionMap[id]
+						return codeName ? `macOS ${codeName}` : release
+					}
+					return x
+				})
+				.filter(x => !(appleNoise.test(x)))
+				.join(' ')
+				.replace(/\slike mac.+/ig, '')
+				.trim().replace(/\s{2,}/, ' ')
+			return ua
+		} else {
+			const other = ua.identifiers.filter(x => otherOS.test(x))
+			if (other.length) {
+				ua.parsed = other.join(' ').trim().replace(/\s{2,}/, ' ')
+				return ua
+			}
+			ua.parsed = ua.identifiers.join(' ')
+			return ua
+		}
+	}
+
+	const getRenderer = gl => {
+		try {
+			const ext = !!gl ? gl.getExtension('WEBGL_debug_renderer_info') : null
+			if (!ext) {
+				return
+			}
+			return gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)
+		}
+		catch (error) {
+			return
+		}
+	}
+
+	const getGPU = () => {
+		let offscreenCanvas, offscreenCanvas2
+		if ('OffscreenCanvas' in window) {
+			offscreenCanvas = new OffscreenCanvas(256, 256)
+			offscreenCanvas2 = new OffscreenCanvas(256, 256)
+		}
+		const canvas = document.createElement('canvas')
+		const canvas2 = document.createElement('canvas')
+
+		const getContext = (canvas, contextType) => {
+			try {
+				if (contextType == 'webgl2') {
+					return (
+						canvas.getContext('webgl2') ||
+						canvas.getContext('experimental-webgl2')
+					)
+				}
+				return (
+					canvas.getContext('webgl') ||
+					canvas.getContext('experimental-webgl') ||
+					canvas.getContext('moz-webgl') ||
+					canvas.getContext('webkit-3d')
+				)
+			}
+			catch (error) {
+				return 'blocked'
+			}
+		}
+		const res = new Set([
+			getRenderer(getContext(offscreenCanvas, 'webgl')),
+			getRenderer(getContext(offscreenCanvas2, 'webgl2')),
+			getRenderer(getContext(canvas, 'webgl')),
+			getRenderer(getContext(canvas2, 'webgl2'))
+		])
+		res.delete(undefined)
+		return [...res]
+	}
+
+
+	const start = performance.now()
+
+	const {
+		userAgent,
+		platform,
+		hardwareConcurrency,
+		deviceMemory,
+		maxTouchPoints
+	} = navigator
+	const res = getUserAgentPlatform({ userAgent, excludeBuild: true }) || {}
+	const system = getOS()
+
+	// test voice lies
+	const voiceSystem = await getVoices()
+	const voiceSystemLie = voiceSystem && (
+		(/Mac|iOS/.test(res.core) && voiceSystem != 'Mac') ||
+		(!/Mac|iOS/.test(res.core) && voiceSystem != system)
+	)
+
+	// test mobile lies
+	const testMobile = (n, system, limit = 8) => n > limit && system && /Windows Phone|Android/.test(system)
+	const memoryLie = testMobile(deviceMemory, system)
+	const coresLie = testMobile(hardwareConcurrency, system)
+
+	// test iOS lies
+	const iosMemoryLie = (
+		res.core == 'iOS' &&
+		typeof deviceMemory != 'undefined'
+	)
+	const iosCoresLie = (
+		res.core == 'iOS' &&
+		typeof hardwareConcurrency != 'undefined'
+	)
+
+	// test gpu
+	const gpu = getGPU()
+	const gpuLie = gpu.length > 1
+	const gpuString = '' + gpu[0]
+	const iosGPULie = (
+		!gpuLie &&
+		res.core == 'iOS' &&
+		!/apple/i.test(gpuString) &&
+		!/gpu/i.test(gpuString)
+	)
+
+	// test css touch
+	patch(document.getElementById('fingerprint-data'), html`
+	<div id="fingerprint-data">
+		<style>
+			@media (any-pointer: fine) {body {--any-pointer: fine}}
+			@media (any-pointer: coarse) {body {--any-pointer: coarse}}
+			@media (any-pointer: none) {body {--any-pointer: none}}
+		</style>
+	</div>
+`)
+	const style = getComputedStyle(document.body)
+	const cssTouch = style.getPropertyValue('--any-pointer').trim()
+	const cssTouchLie = cssTouch != 'coarse' && maxTouchPoints > 0
+	const anyPointerLie = cssTouch == 'coarse' && maxTouchPoints == 0
+
+	console.log(res)
+	const perf = performance.now() - start
+
+	// Prepare data for the endpoint
+	const fingerprintData = {
+		identifiers: res.identifiers,
+		core: res.core,
+		system: system,
+		device: res.parsed,
+		platform: platform,
+		voiceSystem: voiceSystem,
+		maxTouchPoints: maxTouchPoints,
+		cssTouch: cssTouch,
+		deviceMemory: deviceMemory,
+		hardwareConcurrency: hardwareConcurrency,
+		gpu: gpu,
+		lies: {
+			platform: res.platformLie,
+			touch: res.touchLie || cssTouchLie,
+			pointer: anyPointerLie,
+			voice: voiceSystemLie,
+			memory: memoryLie || iosMemoryLie,
+			cores: coresLie || iosCoresLie,
+			gpu: gpuLie || iosGPULie
+		},
+		performanceTime: perf
+	}
+
+	// Send data to endpoint
+	try {
+		const response = await fetch('/fingerprint/js/machine', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(fingerprintData)
+		});
+
+		// Hide spinner and show results
+		spinner.style.display = 'none';
+		resultContainer.style.display = 'block';
+
+		if (response.status === 403) {
+			const htmlContent = await response.text();
+			resultContent.innerHTML = htmlContent;
+			resultContent.className = 'error';
+		} else {
+			const result = await response.json();
+			resultContent.innerHTML = JSON.stringify(result, null, 2);
+			resultContent.className = 'success';
+		}
+	} catch (error) {
+		// Handle error
+		spinner.style.display = 'none';
+		resultContainer.style.display = 'block';
+		resultContent.innerHTML = 'Error: ' + error.message;
+		resultContent.className = 'error';
+	}
+})();
+        </script>
+    </div>
+</body>
+</html> 

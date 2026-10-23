@@ -1,0 +1,61 @@
+{
+  "run_at": "2026-10-23T18:20:23+0200",
+  "results": [
+    {
+      "puzzle": "the_door_of_echoed_steps",
+      "solved": true,
+      "opened": 100,
+      "requests": 100,
+      "achieved_rps": 20.0
+    },
+    {
+      "puzzle": "the_clockwork_door",
+      "solved": true,
+      "opened": 8,
+      "requests": 8,
+      "achieved_rps": 0.08
+    },
+    {
+      "puzzle": "the_exiled_door",
+      "solved": false,
+      "opened": 0,
+      "requests": 1,
+      "achieved_rps": 0.0
+    },
+    {
+      "puzzle": "the_fractured_mirror",
+      "solved": true,
+      "opened": 100,
+      "requests": 100,
+      "achieved_rps": 20.0
+    },
+    {
+      "puzzle": "the_silver_veil",
+      "solved": true,
+      "opened": 100,
+      "requests": 100,
+      "achieved_rps": 20.0
+    },
+    {
+      "puzzle": "the_mirrored_gaze",
+      "solved": true,
+      "opened": 100,
+      "requests": 100,
+      "achieved_rps": 20.0
+    },
+    {
+      "puzzle": "the_sleeping_vault",
+      "solved": true,
+      "opened": 20,
+      "requests": 20,
+      "achieved_rps": 4.0
+    },
+    {
+      "puzzle": "the_verity_gate",
+      "solved": true,
+      "opened": 20,
+      "requests": 20,
+      "achieved_rps": 4.0
+    }
+  ]
+}

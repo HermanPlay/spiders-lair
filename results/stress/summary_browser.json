@@ -1,0 +1,19 @@
+{
+  "run_at": "2026-10-23T18:21:38+0200",
+  "results": [
+    {
+      "puzzle": "the_sleeping_vault",
+      "solved": true,
+      "opened": 60,
+      "requests": 60,
+      "achieved_rps": 10.0
+    },
+    {
+      "puzzle": "the_verity_gate",
+      "solved": true,
+      "opened": 60,
+      "requests": 60,
+      "achieved_rps": 10.0
+    }
+  ]
+}

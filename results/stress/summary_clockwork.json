@@ -1,0 +1,12 @@
+{
+  "run_at": "2026-10-23T18:22:41+0200",
+  "results": [
+    {
+      "puzzle": "the_clockwork_door",
+      "solved": true,
+      "opened": 6,
+      "requests": 6,
+      "achieved_rps": 0.08
+    }
+  ]
+}

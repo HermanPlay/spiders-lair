@@ -1,0 +1,243 @@
+{
+  "matrix": [
+    {
+      "tls": "python/httpx",
+      "ua": "chrome_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "python/httpx",
+      "ua": "firefox_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 200
+    },
+    {
+      "tls": "python/httpx",
+      "ua": "safari_ua",
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "python/httpx",
+      "ua": "python_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "chrome",
+      "ua": "own (impersonated)",
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "chrome",
+      "ua": "chrome_ua",
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "chrome",
+      "ua": "firefox_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 200
+    },
+    {
+      "tls": "chrome",
+      "ua": "safari_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "chrome",
+      "ua": "python_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "firefox",
+      "ua": "own (impersonated)",
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200,
+      "the_mirrored_gaze": 200
+    },
+    {
+      "tls": "firefox",
+      "ua": "chrome_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "firefox",
+      "ua": "firefox_ua",
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200,
+      "the_mirrored_gaze": 200
+    },
+    {
+      "tls": "firefox",
+      "ua": "safari_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "firefox",
+      "ua": "python_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "safari",
+      "ua": "own (impersonated)",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "safari",
+      "ua": "chrome_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "safari",
+      "ua": "firefox_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 200
+    },
+    {
+      "tls": "safari",
+      "ua": "safari_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    },
+    {
+      "tls": "safari",
+      "ua": "python_ua",
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403,
+      "the_mirrored_gaze": 403
+    }
+  ],
+  "fractured_header_ablation": {
+    "chrome: all headers": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-ch-ua": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-ch-ua-mobile": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-ch-ua-platform": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop upgrade-insecure-requests": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop user-agent": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403
+    },
+    "chrome: drop accept": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-fetch-site": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-fetch-mode": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-fetch-user": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop sec-fetch-dest": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop accept-encoding": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 200
+    },
+    "chrome: drop accept-language": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "chrome: drop priority": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 200
+    },
+    "firefox: all headers": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop user-agent": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 403
+    },
+    "firefox: drop accept": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop accept-language": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop accept-encoding": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 200
+    },
+    "firefox: drop upgrade-insecure-requests": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop sec-fetch-dest": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop sec-fetch-mode": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop sec-fetch-site": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop sec-fetch-user": {
+      "the_fractured_mirror": 200,
+      "the_silver_veil": 200
+    },
+    "firefox: drop priority": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 200
+    },
+    "firefox: drop te": {
+      "the_fractured_mirror": 403,
+      "the_silver_veil": 200
+    }
+  }
+}

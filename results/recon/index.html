@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕷️</text></svg>">
+    <title>Spider's Web of Mischief</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            background-image: 
+                radial-gradient(#333 1px, transparent 1px),
+                radial-gradient(#333 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+
+        .web-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #2a2a2a;
+            border: 2px solid #4a4a4a;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(128, 128, 128, 0.1);
+        }
+
+        .web-corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 4px solid #4a4a4a;
+            border-radius: 2px;
+        }
+
+        .web-corner-tl {
+            top: -10px;
+            left: -10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .web-corner-tr {
+            top: -10px;
+            right: -10px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .web-corner-bl {
+            bottom: -10px;
+            left: -10px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .web-corner-br {
+            bottom: -10px;
+            right: -10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        h1 {
+            color: #8a8a8a;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 10px;
+            border-left: 3px solid #4a4a4a;
+            transition: all 0.3s ease;
+        }
+
+        .welcome-text:hover {
+            background: #333;
+            transform: translateX(10px);
+            border-left-color: #666;
+        }
+
+        .web-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #4a4a4a;
+            border-radius: 4px;
+            background: #252525;
+        }
+
+        .web-section h2 {
+            color: #7a7a7a;
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 2px solid #4a4a4a;
+            padding-bottom: 10px;
+        }
+
+        .web-link {
+            display: block;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 10px;
+            border-left: 3px solid #4a4a4a;
+            transition: all 0.3s ease;
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+
+        .web-link:hover {
+            background: #333;
+            transform: translateX(10px);
+            border-left-color: #666;
+            color: #fff;
+        }
+
+        .spider-cursor {
+            cursor: crosshair;
+        }
+
+        .web-description {
+            font-style: italic;
+            color: #777;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body class="spider-cursor">
+    <div class="web-container">
+        <div class="web-corner web-corner-tl"></div>
+        <div class="web-corner web-corner-tr"></div>
+        <div class="web-corner web-corner-bl"></div>
+        <div class="web-corner web-corner-br"></div>
+        
+        <h1>Welcome to the Spider's Lair</h1>
+        <h2 style="text-align: center; font-size: 6rem;">🕷️</h2>
+        <p class="welcome-text">*scuttles closer to inspect your headers*</p>
+        <p class="welcome-text">*spins web around the secret doors*</p>
+        <p class="welcome-text">*whispers* Some tokens are hidden in the shadows...</p>
+        <p class="welcome-text">*waves all eight legs* Catch the HTTP breeze in my web!</p>
+
+        <div class="web-section">
+            <h2>Mysterious Passages</h2>
+            <a href="/the_door_of_echoed_steps" class="web-link">
+                The Door of Echoed Steps
+                <div class="web-description">*rusted hinges shiver* Some say it listens for the trace of a traveler’s past...</div>
+            </a>
+            <a href="/the_clockwork_door" class="web-link">
+                The Clockwork Door
+                <div class="web-description">*a slow, steady tapping echoes from within* Each knock must match its hidden pulse...</div>
+            </a>
+            <a href="/the_exiled_door" class="web-link">
+                The Exiled Door
+                <div class="web-description">*hums in a language not your own* The walls welcome only those who come from beyond...</div>
+            </a>
+        </div>
+
+
+        <div class="web-section">
+            <h2>Curious Reflections</h2>
+            <a href="/the_fractured_mirror" class="web-link">
+                The Fractured Mirror
+                <div class="web-description">*shards twitch* Its reflection breaks when the voice is unnatural...</div>
+            </a>
+            <a href="/the_silver_veil" class="web-link">
+                The Silver Veil
+                <div class="web-description">*a thin mist dances across the glass* A perfect balance of trust will make it clear...</div>
+            </a>
+            <a href="/the_mirrored_gaze" class="web-link">
+                The Mirrored Gaze
+                <div class="web-description">*the glass tilts, searching for a familiar stare* It opens only when met by the right eyes...</div>
+            </a>
+        </div>
+
+        <div class="web-section">
+            <h2>Shattered Thresholds</h2>
+            <a href="/the_sleeping_vault" class="web-link">
+                The Sleeping Vault
+                <div class="web-description">*dark glass shivers, longing for motion* It shows nothing… until you truly look...</div>
+            </a>
+            <a href="/the_verity_gate" class="web-link">
+                The Verity Gate
+                <div class="web-description">*symbols shimmer* Its seal breaks only for what is authentic...</div>
+            </a>
+        </div>
+
+        <div class="web-section">
+            <h2>Ancient Artifacts</h2>
+            <a href="/advanced/basic" class="web-link">
+                The Simple Relic
+                <div class="web-description">*brushes off dust* Even the simplest artifacts hold secrets...</div>
+            </a>
+            <a href="/advanced/machine" class="web-link">
+                The Complex Mechanism
+                <div class="web-description">*studies intricate gears* A puzzle within puzzles...</div>
+            </a>
+        </div>
+
+        <div class="web-section">
+            <h2>Information Matrix</h2>
+            <a href="/tls_info" class="web-link">
+                The Crystal JA3 Cave
+                <div class="web-description">*examines crystal formations* Each pattern tells a different story...</div>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
